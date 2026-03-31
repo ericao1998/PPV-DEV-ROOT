@@ -1,0 +1,20 @@
+# Sub-repos managed as submodules
+prime-salesforce-dev/
+azure-portal-dev/
+salesforce-memory-agent/
+
+# Temp and working directories
+tmp/
+Ad/
+
+# Data files
+*.csv
+null
+
+# IDE and system files
+.vscode/
+.sfdx/
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
