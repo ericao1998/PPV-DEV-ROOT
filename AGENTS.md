@@ -10,7 +10,9 @@
 
 ## Workspace Layout (root)
 - prime-salesforce-dev/ (Salesforce DX repo)
-- azure-portal-dev/ (Azure portal dev repo)
+- PPV_Website/ (website and adjacent web/app repo)
+- lead-crawler/ (crawler and data-pipeline repo)
+- azure-portal-dev/ (shared Azure infra/orchestration repo)
 - salesforce-memory-agent/ (VS Code extension repo)
 
 ## Per-Repo Instructions

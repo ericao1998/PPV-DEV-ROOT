@@ -2,6 +2,8 @@
 prime-salesforce-dev/
 azure-portal-dev/
 salesforce-memory-agent/
+PPV_Website/
+lead-crawler/
 
 # Temp and working directories
 tmp/

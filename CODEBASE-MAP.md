@@ -156,23 +156,23 @@ Lead (standard object)
 
 ---
 
-## Azure Portal Dev Structure
+## Workspace App And Infra Structure
 
 ```
-azure-portal-dev/
+C:\Dev\
 ├── lead-crawler/           ← Python lead processing
-│   ├── normalize/          ← Data normalization (AOAI)
-│   ├── sf-sync/            ← Salesforce sync
-│   ├── skip-trace/         ← Skip trace processing
-│   └── admin-api/          ← Admin API
+│   ├── normalize_job/      ← Data normalization (AOAI)
+│   ├── sf_sync_job/        ← Salesforce sync
+│   ├── skip_trace_job/     ← Skip trace processing
+│   └── admin_api/          ← Admin API
 │
-├── PPV_Website/            ← Company website
+├── PPV_Website/            ← Company website and web/app repo
 │   ├── prime-property-web/ ← Next.js frontend
-│   ├── ppv-backend/        ← Backend API
+│   ├── lead-intake-api/    ← Backend/API surfaces
 │   ├── event-router/       ← Event routing
-│   └── kpi-rollup-job/     ← KPI aggregation
+│   └── ads-ops-job/        ← Ads operations / KPI jobs
 │
-└── .github/workflows/      ← CI/CD pipelines
+└── azure-portal-dev/       ← Shared Azure infra/orchestration repo
 ```
 
 ---

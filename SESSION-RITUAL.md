@@ -204,7 +204,7 @@ Then:
 ### Known Good Pattern
 
 ```bash
-cmd.exe /c "git -C C:\Dev\azure-portal-dev\PPV_Website push origin PPV-Website"
+cmd.exe /c "git -C C:\Dev\PPV_Website push origin PPV-Website"
 ```
 
 This rule applies to both Codex and Claude and should be assumed at session load whenever the environment matches the conditions above.
@@ -252,7 +252,7 @@ python3 script.py
 python3 -m pytest
 npm run build
 az account show
-cmd.exe /c "git -C C:\Dev\azure-portal-dev\PPV_Website push origin PPV-Website"
+cmd.exe /c "git -C C:\Dev\PPV_Website push origin PPV-Website"
 ```
 
 This rule applies to both Codex and Claude and should be treated as baseline workspace knowledge.
@@ -320,14 +320,14 @@ sf project deploy start --target-org ppv-prod --source-dir force-app/main/defaul
 git branch --show-current
 
 # WSL/Windows Git auth-safe push pattern
-cmd.exe /c "git -C C:\Dev\azure-portal-dev\PPV_Website push origin PPV-Website"
+cmd.exe /c "git -C C:\Dev\PPV_Website push origin PPV-Website"
 
 # Python in this workspace
 python3 --version
 python3 script.py
 
 # Azure Container App build (run from repo subdirectory to minimize context)
-cd azure-portal-dev/lead-crawler
+cd lead-crawler
 az acr build -r ppvleadacr -t <tag> -f normalize_job/Dockerfile .
 az containerapp job update -n normalize-job -g PPV_Salesforce --image <tag>
 ```
