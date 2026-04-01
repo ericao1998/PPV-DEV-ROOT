@@ -37,50 +37,12 @@ Minimum required contents:
 - allowed write scope
 - explicit out-of-scope boundaries
 - validation/acceptance requirements
-- required handoff/doc updates if the stack uses canonical `Architect-Docs/`
+- required handoff/doc updates if the repo or task has an active documentation workflow
 
 This rule is intended to remove repeated user prompting for "copy and paste scope" and should be treated as the default handoff style in this workspace.
 
-## Stack Documentation Ground Rule
+## Task Documentation Rule
 
-Any stack-level development task that may span more than one session, more than one AI turn, or more than one implementation phase must use a canonical `Architect-Docs/<Stack>/` document set.
+The legacy `Architect-Docs/<Stack>/` workflow has been decommissioned and is not a default requirement.
 
-Required file contract for each stack:
-- `00-START-HERE.md`
-- `01-ARCHITECTURE.md`
-- `02-RUNBOOKS.md`
-- `03-ISSUE-REGISTRY.md`
-- `04-ACTIVE-HANDOFF.md`
-- `AI-HANDOFF.md`
-- `PROCESS-RUNBOOK.md`
-- `DOCS-INDEX.md`
-- `archive/`
-- `templates/`
-
-Required operating rules:
-- No implementation begins until the issue is logged in `03-ISSUE-REGISTRY.md`
-- Current scope and next actions must be recorded in `04-ACTIVE-HANDOFF.md`
-- `AI-HANDOFF.md` is the only active cross-AI state file for that stack
-- Stable system design belongs in `01-ARCHITECTURE.md`, not in handoff files
-- Session-end checkpoints must be recorded for any non-trivial stack task
-- Stale notes must be archived instead of expanding the active handoff indefinitely
-
-File responsibilities:
-- `04-ACTIVE-HANDOFF.md` = current rolling work log for the active lane or sprint; update this every session that touches the stack
-- `AI-HANDOFF.md` = canonical cross-AI state, gates, work queue, and evidence ledger; update this whenever gate state, implementation evidence, validation evidence, or deployment evidence changes
-
-Mandatory session-close rule:
-- Before ending any stack session, append a checkpoint to `04-ACTIVE-HANDOFF.md`
-- If the session produced implementation, validation, deployment, or gate evidence, also update `AI-HANDOFF.md`
-
-Required checkpoint format:
-```md
-Checkpoint YYYY-MM-DD:
-- Scope:
-- Changed:
-- Validated:
-- Blocked:
-- Next:
-```
-
-If a stack does not yet have this structure, creating or normalizing the stack doc set is the first planning task before implementation begins.
+Use the current repo-local docs, user-specified handoff files, CI/governance files, or other active documentation paths when a task requires persistent notes or evidence. If no active doc path exists, include scope, validation evidence, blockers, and next actions in the session handoff.

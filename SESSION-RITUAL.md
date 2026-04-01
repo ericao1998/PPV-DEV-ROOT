@@ -78,7 +78,7 @@ If a session ignores seller-problem fit, it is likely optimizing the wrong thing
 
 ### Codex Exception — Plan Docs
 
-Codex is permitted to edit **plan documents only** (e.g., `Architect-Docs/**`, `Dev Progress Docs/**`) without switching roles. All other files remain read‑only for Codex.
+Codex is permitted to edit **planning/governance documents only** (e.g., workspace root governance docs, repo handoff notes, `Dev Progress Docs/**`) without switching roles. All other files remain read-only for Codex.
 
 **Constraints:**
 - No code, metadata, or deployment artifacts may be edited by Codex.
@@ -158,14 +158,6 @@ Discovery → [Codex Gate] → Design → [Codex Gate] → Implementation → [C
 | **CICD.md** | Each repo root | CI/CD process for that repository |
 | **REPOSITORY-STRUCTURE.md** | `prime-salesforce-dev/REPOSITORY-STRUCTURE.md` | Codebase navigation |
 | **CODEBASE-STANDARDS-GUIDE.md** | `prime-salesforce-dev/CODEBASE-STANDARDS-GUIDE.md` | Coding standards |
-
----
-
-## NAS Memory Status
-
-> **Currently OFFLINE** - Skip all NAS memory API calls until service is restored.
-
-- Endpoint: `http://10.0.0.50:3000`
 
 ---
 
@@ -311,7 +303,6 @@ I understand the governance model. Codex is the architect and approval gate. Cla
 Role: I am Codex. My role is architect/reviewer only; no file edits or deployments.
 Defaults: review-only, reuse-first, 85%+ Apex coverage for changes, frozen components are off-limits without written approval.
 Business context: PPV acquires property below market by solving seller problems; optimize for qualified seller need and business fit, not shallow volume.
-NAS memory status: offline; no calls to http://10.0.0.50:3000.
 Org access: validate `sf` runtime and `ppv-prod` connectivity before any org-facing test/deploy step.
 
 ---

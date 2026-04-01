@@ -6,7 +6,7 @@ Latest Approval Token: APPROVED-POWER-DIALER-PHASE-4-PD4-20-ISO-R1
 Date: 2026-03-08
 Phase: Power Dialer Phase 4 - isolated PD4-20 follow-up (active-call highlight reconciliation)
 Approved By: Codex
-Summary: Approved to begin a single-bug, single-file implementation pass per `prime salesforce dev/Architect-Docs/Phone-Stack/AI-HANDOFF.md` and `prime salesforce dev/Architect-Docs/Phone-Stack/power-dialer-edge-cases.md`: `PD4-20` active on-call phone highlight drift, lookup `PD4-20-ISOLATED-HIGHLIGHT-RECONCILE-R1`. Scope is limited to `embeddedDialer.js` highlight reconciliation only. Token is single-use and must be reissued if scope changes.
+Summary: Approved to begin a single-bug, single-file implementation pass per the then-active Phone Stack handoff and edge-case docs (legacy `Architect-Docs` reference): `PD4-20` active on-call phone highlight drift, lookup `PD4-20-ISOLATED-HIGHLIGHT-RECONCILE-R1`. Scope is limited to `embeddedDialer.js` highlight reconciliation only. Token is single-use and must be reissued if scope changes.
 Additional Minted Token (Queued): `APPROVED-POWER-DIALER-PHASE-4-R2-CB3-R1` (`R2-CB3-PD4-4-INBOUND-CALLER-ANSWER-R1`) for inbound caller/answer follow-up after `PD4-20`.
 Additional Minted Token (Queued): `APPROVED-POWER-DIALER-PHASE-4-R2-CH-R1` (`R2-CH-PD4-25-SESSION-CONTROL-STATE-SYNC-R1`) for session-control state-sync follow-up after `PD4-20` and `R2-CB3`.
 

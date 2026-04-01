@@ -27,6 +27,7 @@ At session start, state:
 - All closeout reports for Codex review **MUST** be wrapped in a fenced code block (triple backticks) so they can be copied as one unit.
 - Do NOT use inline markdown in conversation flow for closeouts — Codex needs copy-paste-ready plain text.
 - Every closeout must include: files changed, behavior summary, test results, deploy ID (if applicable), and any blockers.
+- Do not assume the legacy `Architect-Docs/<Stack>/AI-HANDOFF.md` workflow exists. If the repo or task has an active handoff/doc path, update it; otherwise include the full evidence in the closeout.
 
 ## Repo-Specific Rules
 

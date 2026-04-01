@@ -113,7 +113,7 @@ Minimum scope contents:
 - **Delete temporary/test files after task completion**
 - **Clean up any scratch files before ending session**
 - **Run `git status --short` before final handoff/commit/deploy and remove AI-generated temp artifacts unless the user explicitly asked to keep them**
-- **After implementation: commit, deploy, and update AI-HANDOFF.md with evidence** (see Post-Implementation Evidence below)
+- **After implementation: commit, deploy, and record evidence in the active task docs or closeout report** (see Post-Implementation Evidence below)
 
 **Response Format After Completing Work:**
 ```
@@ -180,19 +180,19 @@ Ready to proceed to Design phase?"
 
 ---
 
-## AI-HANDOFF Protocol
+## Documentation And Evidence Protocol
 
-Each stack/phase has a canonical **`AI-HANDOFF.md`** file that serves as the cross-AI handoff document. Both Codex and Claude must use it to pass state, evidence, and next actions.
+The legacy `Architect-Docs/<Stack>/AI-HANDOFF.md` workflow has been decommissioned. Do not assume a canonical per-stack handoff file exists.
 
-**Location:** `Architect-Docs/<Stack>/AI-HANDOFF.md` (e.g., `Architect-Docs/Phone-Stack/AI-HANDOFF.md`)
+Use the current repo-local docs, user-specified handoff files, or other active task documentation when persistent state is required. If no active doc path exists, record the needed evidence in the implementation closeout report.
 
 ### Sections & Ownership
 
 | Section | Owner | Purpose |
 |---------|-------|---------|
-| Current State | Codex | Flags, observations, next requested evidence |
+| Current State | Codex | Scope, gates, observations, next requested evidence |
 | Implementation Notes | Claude | Changes, commits, deploy IDs, test results |
-| Validation Summary | Both | Codex adds check items; Claude marks complete with line refs |
+| Validation Summary | Both | Findings, verification status, next actions |
 
 ### Post-Implementation Evidence (Claude)
 
@@ -202,7 +202,7 @@ After every Codex "Gate Approved" that results in code changes, Claude **MUST** 
 2. **Deploy** — Deploy to target org:
    - **Apex changes:** `sf project deploy start --source-dir <path> --target-org ppv-prod --test-level RunSpecifiedTests -t <TestClass1,TestClass2> --wait 20` (only run tests relevant to the changed classes)
    - **LWC-only changes:** `sf project deploy start --source-dir <path> --target-org ppv-prod --wait 20` (omit `--test-level` entirely — SF auto-skips tests when no Apex in deployment)
-3. **Update AI-HANDOFF.md** — Record the commit hash, deploy ID, test pass/fail counts, and mark validation summary rows as complete
+3. **Record evidence** — In the active task docs if they exist; otherwise in the closeout report. Include the commit hash, deploy ID, test pass/fail counts, and unresolved blockers
 
 Example evidence block:
 ```
@@ -218,14 +218,14 @@ For post-deploy bug fixes organized as clusters:
 2. **Claude** proposes which cluster to address first (based on pain, fix overlap, prerequisites)
 3. **Codex** issues "Gate Approved: Design -> Implementation (Cluster X)" with action items
 4. **Claude** implements fixes, resolves all Codex action items, then commits + deploys + records evidence
-5. **Codex** validates evidence in AI-HANDOFF.md and approves next cluster
+5. **Codex** validates the recorded evidence and approves the next cluster
 
 Default handoff rule:
 - when Codex expects Claude to act, Codex should provide the instruction as a copy-paste-ready scope block so the user can hand it to Claude without rewriting it
 
 ### Codex Action Items
 
-When Codex gate-approves with action items, Claude must resolve **every** item and document the resolution inline in the AI-HANDOFF.md checklist. Format:
+When Codex gate-approves with action items, Claude must resolve **every** item and document the resolution inline in the active task notes or closeout checklist. Format:
 
 ```
 - [ ] <Item description> — RESOLVED: <what was done, with line references>
@@ -253,7 +253,7 @@ For any internal UI, dashboard, admin console, or operator workflow surface:
 - **Server-side:** `PhoneStackSafetyHelper.isFeatureEnabled('Flag_Name')`
 - **Client-side (LWC):** `this._phoneStackFlags['Flag_Name']` (loaded via `getPhoneStackFlags()`)
 - **Default state:** All new flags deploy as `Is_Enabled__c = false`
-- **Enablement:** One flag at a time, lowest risk first, per enablement order in AI-HANDOFF.md
+- **Enablement:** One flag at a time, lowest risk first, per the current rollout plan or active task notes
 - **Test assertions:** NEVER assert a specific flag value — use structural assertions only (`containsKey`)
 
 ---
@@ -306,7 +306,7 @@ Before any org-facing testing/deployment activity, AI must verify CLI runtime an
 2. Verify target org access:
    - `sf org list --all`
    - Confirm alias `ppv-prod` is present and `Connected`
-3. If org access is not confirmed, DO NOT proceed with deploy/test gates; record blocker in `AI-HANDOFF.md`.
+3. If org access is not confirmed, DO NOT proceed with deploy/test gates; record the blocker in the active task notes or closeout report.
 
 ---
 
@@ -321,8 +321,8 @@ Before any org-facing testing/deployment activity, AI must verify CLI runtime an
 | Can Codex write code? | **NO** (review-only) |
 | Default mode? | Review-only |
 | Test coverage required? | 85%+ (Apex) |
-| Cross-AI handoff doc? | `AI-HANDOFF.md` per stack |
-| Post-implementation evidence? | Commit + Deploy + AI-HANDOFF update |
+| Cross-AI handoff doc? | Use active repo/task docs when they exist; otherwise use the closeout report |
+| Post-implementation evidence? | Commit + Deploy + recorded evidence |
 | Salesforce CLI? | `sf` v2.122.6 (prefer over legacy `sfdx`) |
 | Apex deploy test level? | `--test-level RunSpecifiedTests -t <TestClasses>` |
 | LWC-only deploy test level? | Omit `--test-level` (auto-skips tests) |
@@ -347,7 +347,7 @@ Before any org-facing testing/deployment activity, AI must verify CLI runtime an
 - ad hoc exported debug files such as `org_*.js`, `debug_*.json`, `retrieve_*.html`
 
 **Keep vs delete rule:**
-- If evidence must be preserved for a user-approved reason, move it into a permanent documentation location such as `Architect-Docs/` or `Dev Progress Docs/`
+- If evidence must be preserved for a user-approved reason, move it into a permanent documentation location such as the current repo docs or `Dev Progress Docs/`
 - Otherwise, delete temp artifacts before ending the task
 
 **Verification step:**
