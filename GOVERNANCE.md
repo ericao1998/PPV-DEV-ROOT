@@ -178,6 +178,24 @@ Ready to proceed to Design phase?"
 3. No phase skipping allowed
 4. User can override gates if needed
 
+### When Using Tri-Agent Autonomous Loop (Hermes + Codex + Claude)
+
+Some stacks use a Hermes-orchestrated autonomous loop where roles shift:
+
+| Agent | Default (Dual-AI) | Autonomous Loop |
+|-------|-------------------|-----------------|
+| Codex | Architect / Gate | Implementation agent |
+| Claude | Coder / Implementer | Review agent (secondary implementer) |
+| Hermes | N/A | Controller / Gate / Orchestrator |
+
+When a stack's `SYSTEM-WIRING.md` declares the autonomous loop model:
+- **Hermes** owns gates, task routing, and acceptance — not Codex
+- **Codex** implements — it does not review its own work
+- **Claude** reviews Codex output independently before Hermes accepts
+- The workspace dual-AI model remains the default for all other stacks
+
+Stack-level authority overrides apply **only within that stack's lane**. The workspace-level dual-AI model governs everything else.
+
 ---
 
 ## Documentation And Evidence Protocol

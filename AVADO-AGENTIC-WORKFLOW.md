@@ -88,6 +88,32 @@ Medium-term target:
 - containerize production jobs where practical
 - treat runtime as deployment output, not as the primary editable working tree
 
+Current implementation status:
+
+- `lead-crawler` now has a repo-side Stage 1 container cutover package:
+  - `Dockerfile.avado`
+  - `docker-compose.avado.yml`
+  - `scripts/run-job-container.sh`
+  - `ops/avado/lead-crawler-dashboard.container.service`
+  - `ops/avado/lead-crawler.container.crontab`
+- `PPV_Website/ads-ops-job` now has a repo-side container cutover package:
+  - `Dockerfile`
+  - `docker-compose.avado.yml`
+  - `avado-ads-ops.container.service`
+  - `avado-worker.container.service`
+  - `avado-worker.container.timer`
+  - `avado-ingest.container.service`
+  - `avado-ingest.container.timer`
+- Docker is now installed on `avado`, both images build from the clean clones, and both images pass import/startup smoke checks
+- the `ads-ops-job` container runtime is now the live Avado production path:
+  - API served from the clean clone container on `:8080`
+  - worker and ingest timers now point to the containerized user units
+- the `lead-crawler` Stage 1 cutover is also now live:
+  - dashboard served from the clean clone container on `:8050`
+  - dispatcher cron now runs from the clean clone and launches stage jobs through `scripts/run-job-container.sh`
+- remaining watch item:
+  - the first natural live crawler stage execution through the new container wrapper still needs observation after cutover
+
 ## Immediate Default Choices
 
 Until further cleanup work is complete, use these defaults:
@@ -117,4 +143,3 @@ It does not mean:
 
 - immediately replacing every live runtime directory
 - editing running service folders by default
-

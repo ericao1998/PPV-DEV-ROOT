@@ -13,6 +13,13 @@ Ad/
 *.csv
 null
 
+# Secrets and environment files
+.env
+.env.*
+!.env.example
+!.env.template
+.mcp.json
+
 # IDE and system files
 .vscode/
 .sfdx/
