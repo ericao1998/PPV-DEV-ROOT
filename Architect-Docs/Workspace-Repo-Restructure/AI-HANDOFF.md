@@ -1,29 +1,36 @@
 # AI-HANDOFF - Workspace Repo Restructure
 
-Last Updated: 2026-04-01
-Owners: Codex (state/gates), Claude (implementation/evidence)
+Last Updated: 2026-04-03
+Owners: Hermes (controller/state/gates), Codex (implementation), Claude (review/evidence)
 
 ## Current State
-- Phase: implementation planning + workspace restructure
-- Goal: promote `PPV_Website` and `lead-crawler` to top-level siblings under `C:\Dev`
+- Phase: completed workspace realignment baseline
+- Goal achieved: `PPV-Dev-Root` is now the governance/session-loader host, while `PPV-Operator-OS` is the canonical operator/control-plane/app-factory repo
+- Subsystem repos are now treated as bounded domains rather than canonical app-factory owners:
+  - `Lead-Crawler`
+  - `prime-salesforce-dev`
+  - `PPV_Website`
+  - `azure-portal-dev`
+  - `salesforce-memory-agent`
 
 ## Validation Summary
 
 | Item | Status | Evidence |
 |---|---|---|
-| Root architecture lane created | Complete | `Architect-Docs/Workspace-Repo-Restructure/**` |
-| `PPV_Website` move completed | Complete | moved intact to `C:\Dev\PPV_Website` |
-| `lead-crawler` move completed | Complete | moved to `C:\Dev\lead-crawler` |
-| `lead-crawler` repo initialized | Complete | `git init -b main` run in new top-level crawler path |
-| Root docs/path references updated | In progress | root `.gitignore`, `AGENTS.md`, `CODEBASE-MAP.md`, and `SESSION-RITUAL.md` updated |
-| Azure docs/path references updated | In progress | high-level `AGENTS.md`, `CICD.md`, and `SESSION_HANDOFF.md` updated |
+| Root governance normalized to Hermes-led model | Complete | `AGENTS.md`, `GOVERNANCE.md`, `SESSION-RITUAL.md`, `Dev-Loop-Contracts/` |
+| Workspace routing points operator/control-plane ownership to `PPV-Operator-OS` | Complete | `AGENTS.md`, `SESSION-RITUAL.md`, `docs/plans/2026-04-03-ppv-operator-os-workspace-realignment.md` |
+| `PPV-Operator-OS` canonical repo scaffold created | Complete | `/home/eao168/PPV-Operator-OS/{README.md,AGENTS.md,Architect-Docs/,contracts/,apps/,services/,adapters/}` |
+| Repo-local AGENTS inheritance updated across bounded subsystems | Complete | `Lead-Crawler/AGENTS.md`, `PPV_Website/AGENTS.md`, `azure-portal-dev/AGENTS.md`, `salesforce-memory-agent/AGENTS.md`, `prime-salesforce-dev/AGENTS.md` |
+| Active subsystem docs no longer present Lead-Crawler or Salesforce as canonical app-factory owner | Complete | Lead-Crawler and Salesforce stack docs updated on 2026-04-03 |
 
 ## Open Items
-- [ ] Move `PPV_Website` out of `azure-portal-dev`
-- [ ] Move `lead-crawler` out of `azure-portal-dev`
-- [ ] Initialize `lead-crawler` as a top-level repo
-- [ ] Update root `.gitignore`
-- [ ] Update stale workspace ritual/path references
-- [ ] Update Azure repo docs to reflect new boundaries
-- [ ] Decide whether to commit root/Azure restructure artifacts now or in a follow-up pass
-- [ ] Set remote and long-term repo strategy for `lead-crawler`
+- [ ] Add/confirm git remote for `PPV-Operator-OS` before push-based workflow can be considered fully closed
+- [ ] Choose the first implemented Operator-OS contract-backed UI slice
+- [ ] Decide canonical casing/path between `Lead-Crawler` and `lead-crawler`
+- [ ] Decide the long-term placement/ownership model for `ads-ops-job`
+
+## Next Actions
+- Treat workspace ownership realignment as complete
+- Route future operator/control-plane/app-factory implementation into `PPV-Operator-OS`
+- Keep subsystem repos bounded and expose capabilities upward through explicit contracts rather than repo sprawl
+- Use the Operator-OS issue registry/handoffs for the first contract-to-implementation slice

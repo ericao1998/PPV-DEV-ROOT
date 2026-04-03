@@ -1,9 +1,17 @@
-# Sub-repos managed as submodules
+# Sub-repos managed as submodules or linked into the umbrella workspace
 prime-salesforce-dev/
 azure-portal-dev/
 salesforce-memory-agent/
 PPV_Website/
 lead-crawler/
+
+# Explicit non-slash ignores for symlinked repo names in the workspace root
+prime-salesforce-dev
+azure-portal-dev
+salesforce-memory-agent
+PPV_Website
+Lead-Crawler
+lead-crawler
 
 # Temp and working directories
 tmp/
